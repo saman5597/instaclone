@@ -47,15 +47,17 @@ function Navbar() {
 
     return (
         <>
-            <nav>
-                <div className="nav-wrapper myNavbar white">
-                    <Link to={state ? "/" : "/login"} className="brand-logo insta-logo left">Instagram</Link>
-                    <a href="#" data-target="mobile-demo" className="sidenav-trigger right"><i className="material-icons">menu</i></a>
-                    <ul id="nav-mobile" className="right hide-on-med-and-down">
-                        {renderList()}
-                    </ul>
-                </div>
-            </nav>
+            <div className="navbar-fixed">
+                <nav>
+                    <div className="nav-wrapper myNavbar white">
+                        <Link to={state ? "/" : "/login"} className="brand-logo insta-logo left">Instagram</Link>
+                        <a href="#" data-target="mobile-demo" className="sidenav-trigger right"><i className="material-icons">menu</i></a>
+                        <ul id="nav-mobile" className="right hide-on-med-and-down">
+                            {renderList()}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
             <ul className="sidenav" id="mobile-demo">
                 {renderList()}
             </ul>
