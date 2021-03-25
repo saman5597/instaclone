@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+
+.myNavbar a {
+  color: black !important;
+}
+
+.logout-btn {
+  padding: 0 32px;
+}
+
+.insta-logo {
+  font-family: 'Grand Hotel', cursive;
+}
+
+.action-button {
+  cursor: pointer;
+  user-select: none;
+}
+
+/* Login / Signup Screens  */
+
+.myCard {
+  margin-top: 30px;
+}
+
+.auth-card {
+  padding: 20px;
+  margin: 10px auto;
+  text-align: center;
+  max-width: 400px;
+}
+
+.input-field input[type=text]:focus, 
+.input-field input[type=email]:focus,
+.input-field input[type=password]:focus {
+  border-bottom: 1px solid #1e88e5 !important;
+  box-shadow: 0 1px 0 0 #1e88e5 !important;
+}
+
+/* Profile */
+
+.profile {
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+.profile-about {
+  border-bottom: 1px solid gray;
+}
+
+.profile-details {
+  margin-right: 50px;
+}
+
+.my-detail-div {
+  display: flex;
+}
+
+.edit-profile {
+  margin: 10px 0;
+}
+
+.profile-img {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  margin: 5px auto; 
+}
+
+.profile-pic-small {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-bottom: -3px;
+}
+
+.insta-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.item {
+  width: 30%;
+  margin-top: 10px;
+}
+
+.profile-btn {
+  margin: 10px auto;
+}
+
+.follower-details {
+  display: inline-flex;
+  justify-content: space-around;
+}
+
+/* Home */
+
+.home-card {
+  max-width: 500px;
+  height: max-content;
+  margin: 20px auto;
+}
+
+.posted-by-name {
+  font-weight: 500;
+}
+
+/* Create Post */
+
+.create-post {
+  margin: 30px auto;
+  max-width: 500px;
+  padding: 20px;
+  text-align: center;
+}
+
+.valid {
+  border-bottom: 1px solid #1e88e5 !important;
+  box-shadow: 0 1px 0 0 #1e88e5 !important;
+}
+
+/* Toast  */
+
+#toast-container {
+  top: 30px !important;
+  right: 20px !important;
+  left: auto !important;
+}
+
+/* Loading */
+
+.loading {
+  text-align: center;
+  margin: 50px auto;
+}
+
+/* User profile  */
+
+.user-details-div {
+  display: flex;
+  flex-direction: column;
+}
+
+.like-icon {
+  color: red;
+}
+
+.mobile-view-div {
+  display: flex;
+  flex-direction: column;
+}
