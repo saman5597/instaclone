@@ -10,6 +10,7 @@ function CreatePost() {
     const [title, setTitle] = useState("")
     const [body, setBody] = useState("")
     const [image, setImage] = useState("")
+    const [buttonLoaderSpan, setButtonLoaderSpan] = useState("Submit Post")
 
     const uploadPost = () => {
         const data = new FormData()
@@ -17,6 +18,7 @@ function CreatePost() {
         data.append("upload_preset", "insta-clone")
         data.append("cloud_name", "saman5")
 
+        setButtonLoaderSpan("Please wait...")
         fetch("https://api.cloudinary.com/v1_1/saman5/image/upload", {
             method: "POST",
             body: data
@@ -45,17 +47,25 @@ function CreatePost() {
                     .then(response => {
 
                         if (response.status) {
+                            setButtonLoaderSpan("Submit Post")
                             M.toast({ html: response.message, classes: "green" })
                             history.push('/')
                         }
                         else {
+                            setButtonLoaderSpan("Submit Post")
                             M.toast({ html: response.message, classes: "red" })
                             setTitle("")
                             setBody("")
                             setImage("")
                         }
-                    }).catch(err => console.log(err))
-            }).catch(err => console.log(err))
+                    }).catch(err => {
+                        console.log(err)
+                        setButtonLoaderSpan("Submit Post")
+                    })
+            }).catch(err => {
+                console.log(err)
+                setButtonLoaderSpan("Submit Post")
+            })
 
 
     }
@@ -73,7 +83,7 @@ function CreatePost() {
                     <input className="file-path validate" type="text" />
                 </div>
             </div>
-            <button onClick={uploadPost} className="btn waves-effect waves-light blue darken-1">Submit Post</button>
+            <button onClick={uploadPost} className="btn waves-effect waves-light blue darken-1">{buttonLoaderSpan}</button>
         </div>
     )
 }

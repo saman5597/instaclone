@@ -15,4 +15,6 @@ router.route('/updateProfilePic').put(userController.updateProfilePic)
 
 router.route('/editProfile').put(userController.updateName)
 
+router.route('/searchUsers').post(userController.searchUsers)
+
 module.exports = router

@@ -11,6 +11,8 @@ import { initialState, reducer } from './reducers/userReducer'
 import UserProfile from './components/screens/UserProfile'
 import FollowedUserPosts from './components/screens/FollowedUserPosts'
 import EditProfile from './components/screens/EditProfile'
+import ForgotPassword from './components/screens/ForgotPassword'
+import ResetPassword from './components/screens/ResetPassword'
 
 export const UserContext = createContext()
 
@@ -35,8 +37,9 @@ const Routing = () => {
           }
         }).catch(err => console.log(err))
     } else {
-      history.push('/login')
-    }
+      if (!history.location.pathname.startsWith('/reset'))
+          history.push('/login')
+      }
   }, [])
 
   return (
@@ -64,6 +67,12 @@ const Routing = () => {
       </Route>
       <Route path="/editProfile">
         <EditProfile />
+      </Route>
+      <Route path="/forgotPassword">
+        <ForgotPassword />
+      </Route>
+      <Route path="/resetPassword/:resetToken">
+        <ResetPassword />
       </Route>
     </Switch>
   )

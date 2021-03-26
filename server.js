@@ -1,5 +1,5 @@
 const express = require('express')
-require('dotenv').config({ path: './config.env' });
+require('dotenv').config({ path: './config.env' })
 const connectToDB = require('./dbConfig')
 
 process.on('uncaughtException', err => {

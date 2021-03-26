@@ -17,7 +17,7 @@ exports.createPost = async (req, res) => {
         })
 
         await post.save()
-        res.status(200).json({ status: true, message: "Image successfully posted!" })
+        res.status(200).json({ status: true, message: "Image successfully posted." })
 
     } catch (err) {
         console.log(err.message)
@@ -27,7 +27,9 @@ exports.createPost = async (req, res) => {
 
 exports.viewAllPosts = async (req, res) => {
     try {
-        const posts = await Post.find().populate("postedBy", "_id fullName profilePic")
+        const posts = await Post.find()
+            .populate("postedBy", "_id fullName profilePic")
+            .sort('-createdAt')
         res.status(200).json({ status: true, posts })
 
     } catch (err) {
@@ -38,7 +40,9 @@ exports.viewAllPosts = async (req, res) => {
 
 exports.viewFollowingPosts = async (req, res) => {
     try {
-        const posts = await Post.find({ postedBy: { $in: req.currentUser.following } }).populate("postedBy", "_id fullName profilePic")
+        const posts = await Post.find({ postedBy: { $in: req.currentUser.following } })
+            .populate("postedBy", "_id fullName profilePic")
+            .sort('-createdAt')
         res.status(200).json({ status: true, posts })
 
     } catch (err) {
@@ -118,7 +122,7 @@ exports.deletePost = (req, res) => {
             if (post.postedBy._id.toString() === req.currentUser._id.toString()) {
                 post.remove()
                     .then(result => {
-                        res.status(200).json({ status: true, message: "Post deleted successfully!", result })
+                        res.status(200).json({ status: true, message: "Post deleted successfully.", result })
                     }).catch(err => {
                         console.log(err)
                     })

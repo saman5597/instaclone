@@ -7,7 +7,7 @@ exports.getUserByUserId = async (req, res) => {
         const user = await User.findById(req.params.userId)
 
         if (!user) {
-            return res.status(404).json({ status: false, message: 'User not found!' })
+            return res.status(404).json({ status: false, message: 'User not found.' })
         }
 
         const posts = await Post.find({ postedBy: req.params.userId }).populate("postedBy", "_id fullName profilePic")
@@ -66,10 +66,10 @@ exports.updateProfilePic = (req, res) => {
     User.findByIdAndUpdate(req.currentUser._id, {
         $set: { profilePic: req.body.profilePic }
     }, { new: true })
-        .then(data => res.status(200).json({ status: true, message: "Profile picture successfully updated!", data }))
+        .then(data => res.status(200).json({ status: true, message: "Profile picture successfully updated.", data }))
         .catch(err => {
             console.log(err)
-            return res.status(422).json({ status: false, message: "Error updating profile picture!" })
+            return res.status(422).json({ status: false, message: "Error updating profile picture." })
         })
 }
 
@@ -78,9 +78,20 @@ exports.updateName = (req, res) => {
     User.findByIdAndUpdate(req.currentUser._id, {
         $set: { fullName: req.body.fullName }
     }, { new: true })
-        .then(data => res.status(200).json({ status: true, message: "Name successfully updated!", data }))
+        .then(data => res.status(200).json({ status: true, message: "Name successfully updated.", data }))
         .catch(err => {
             console.log(err)
-            return res.status(422).json({ status: false, message: "Error updating name!" })
+            return res.status(422).json({ status: false, message: "Error updating name." })
+        })
+}
+
+exports.searchUsers = (req, res) => {
+    let userPattern = new RegExp(`^${req.body.query}`)
+    User.find({ email: { $regex: userPattern } })
+        .then(user => {
+            res.json({ status: true, user })
+        }).catch(err => {
+            console.log(err)
+            return res.status(500).json({ status: false, message: 'Internal Server Error.' })
         })
 }

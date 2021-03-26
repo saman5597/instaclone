@@ -62,7 +62,7 @@ function Signup() {
 
             }).catch(err => {
                 console.log(err)
-                setSignupLoaderSpan("Please wait...")
+                setSignupLoaderSpan("Signup")
             })
     }
 

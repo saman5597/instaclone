@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import M from 'materialize-css'
-import cookie from 'react-cookie'
 import { UserContext } from '../../App'
 
 function Login() {
@@ -29,7 +28,6 @@ function Login() {
         fetch("/api/v1/auth/login", config).then(res => res.json())
             .then(data => {
                 if (data.status) {
-                    const token = cookie.load('jwt')
                     dispatch({ type: "USER", payload: data.user })
                     setLoginLoaderSpan("Login")
                     M.toast({ html: data.message, classes: "green" })
@@ -44,7 +42,7 @@ function Login() {
 
             }).catch(err => {
                 console.log(err)
-                setLoginLoaderSpan("Please wait...")
+                setLoginLoaderSpan("Login")
             })
     }
 
@@ -56,6 +54,7 @@ function Login() {
                 <input type="password" onChange={e => setPassword(e.target.value)} value={password} placeholder="Password" />
                 <button onClick={login} className="btn waves-effect waves-light blue darken-1">{loginLoaderSpan}</button>
                 <h6><Link to="/signup">Don't have an account ?</Link></h6>
+                <p><Link to="/forgotPassword">Forgot your password ?</Link></p>
             </div>
         </div>
     )

@@ -33,7 +33,7 @@ const userSchema = new mongoose.Schema(
       minlength: 6,
       select: false
     },
-    profilePic : {
+    profilePic: {
       type: String,
       default: 'https://res.cloudinary.com/saman5/image/upload/v1616567687/noimage_wpwal4.jpg'
     },
@@ -48,7 +48,13 @@ const userSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
       }
-    ]
+    ],
+    pwdResetToken: {
+      type: String
+    },
+    linkExpireTime: {
+      type: Date
+    }
   },
   schemaOptions
 )
